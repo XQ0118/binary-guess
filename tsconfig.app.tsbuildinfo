@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/start-up.tsx","./src/vite-env.d.ts","./src/components/ui/3d-card.tsx","./src/components/ui/aurora-background.tsx","./src/components/ui/hero-highlight.tsx","./src/components/ui/rainbow-button.tsx","./src/utils/cn.ts","./src/utils/random.ts"],"version":"5.6.3"}
