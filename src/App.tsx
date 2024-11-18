@@ -53,13 +53,13 @@ function Game() {
     const newAttempts = attempts + 1;
     setAttempts(newAttempts);
     if (guessNumber === targetNumber) {
-      setMessage(`恭喜你猜对了 🎉 只用了 ${newAttempts} 次就猜中了！`)
+      setMessage(`恭喜你猜对了 🎉 只用了 ${newAttempts} 次就猜对了！`)
       setGameOver(true)
       triggerConfetti()
     } else if (guessNumber < targetNumber) {
-      setMessage(`${getRandomHappyEmoji()} 太小了！继续猜！`)
+      setMessage(`${getRandomHappyEmoji()} 小了！继续！`)
     } else {
-      setMessage(`${getRandomHappyEmoji()} 太大啦！继续猜！`)
+      setMessage(`${getRandomHappyEmoji()} 大了！继续！`)
     }
   }, [guess, targetNumber, attempts, gameOver]);
 
