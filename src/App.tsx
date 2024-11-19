@@ -12,9 +12,9 @@ import { HeroHighlight, Highlight } from './components/ui/hero-highlight';
 function Game() {
 
 
-  const [step, setStep] = useState<1 | 2>(1);
+  // const [step, setStep] = useState<1 | 2>(1);
 
-  const [targetNumber, setTargetNumber] = useState(75);
+  const [targetNumber, setTargetNumber] = useState(getRandomTargetNumber);
 
   const [guess, setGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
@@ -27,25 +27,28 @@ function Game() {
     console.log('targetNumber', targetNumber)
   }, [targetNumber])
 
-  useEffect(() => {
-    if (step === 1) {
-      setTargetNumber(75);
-    } else {
-      setTargetNumber(getRandomTargetNumber());
-    }
-  }, [step])
+  // useEffect(() => {
+  //   if (step === 1) {
+  //     setTargetNumber(75);
+  //   } else {
+  //     setTargetNumber(getRandomTargetNumber());
+  //   }
+  // }, [step])
 
   const reset = useCallback(() => {
-    if (step === 1) {
-      setTargetNumber(75);
-    } else {
-      setTargetNumber(getRandomTargetNumber());
-    }
+    // if (step === 1) {
+    //   setTargetNumber(75);
+    // } else {
+    //   setTargetNumber(getRandomTargetNumber());
+    // }
+    setTargetNumber(getRandomTargetNumber());
     setGuess('');
     setGameOver(false);
     setMessage('');
     setAttempts(0);
-  }, [step]);
+  }, [
+    // step,
+  ]);
 
   const handleGuess = useCallback(() => {
     if (!guess || gameOver) return;
@@ -93,21 +96,23 @@ function Game() {
 
   }, [])
 
-  const nextLevel = useCallback(() => {
-    setStep(2);
-    reset();
-  }, [reset]);
+  // const nextLevel = useCallback(() => {
+  //   setStep(2);
+  //   reset();
+  // }, [reset]);
 
-  const previousLevel = useCallback(() => {
-    setStep(1);
-    reset();
-  }, [reset]);
+  // const previousLevel = useCallback(() => {
+  //   setStep(1);
+  //   reset();
+  // }, [reset]);
 
   return (
     <>
       <AuroraBackground className='min-h-dvh max-h-dvh'>
         <div className='min-w-96 max-w-lg  relative p-10 overflow-hidden rounded-2xl transition duration-200 group bg-white hover:shadow-xl border border-zinc-300 flex flex-col gap-5'>
-          <h1 className='text-2xl font-bold '>{step === 1 ? '第一关' : '第二关: 目标数随机'}</h1>
+          {/* <h1 className='text-2xl font-bold '>{step === 1 ? '第一关' : '第二关: 目标数随机'}</h1> */}
+          <h1 className='text-2xl font-bold '>猜数字</h1>
+          
           <HeroHighlight>
             <motion.div
               initial={{
@@ -123,7 +128,7 @@ function Game() {
                 ease: [0.4, 0.0, 0.2, 1],
               }}
             >
-              目标数字就藏在{" "}
+              答案数字就藏在{" "}
               <Highlight className="text-black dark:text-white">
                 0 到 100
               </Highlight>
@@ -172,13 +177,13 @@ function Game() {
           <div className='flex items-center gap-5'>
             <RainbowButton className='text-white disabled:opacity-70 disabled:cursor-not-allowed disabled:pointer-events-none'
               disabled={!guess || gameOver}
-              onClick={handleGuess}  >
+              onClick={handleGuess}>
               揭晓真相！
             </RainbowButton>
 
             <button className='bg-zinc-200 rounded-xl h-10 px-5' onClick={reset}>重置</button>
 
-            {
+            {/* {
               step === 1 && gameOver && <button className='text-white bg-indigo-600 rounded-xl h-10 px-5' onClick={nextLevel}>挑战下一关</button>
             }
 
@@ -189,7 +194,7 @@ function Game() {
               >
                 返回上一关
               </button>
-            )}
+            )} */}
           </div>
 
         </div>
